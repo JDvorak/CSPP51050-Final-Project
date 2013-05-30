@@ -1,10 +1,13 @@
-require_relative 'data_fetcher'
+require_relative 'data_fetching'
 require 'twitter'
 
 
-df = DataFetcher.new
+df = TweetFetcher.new
 
-df.user_tweets "jdmalandruccolo"
-tweets = df.tweets_near 0,0,0,0
+puts df.user_tweets 'jdmalandruccolo'
+
+tweets = df.tweets_near 34.05,-118.25,10,5
 # => TODO: consider writing a TweetAdapter class that provides a simple client for the tweets
-puts tweets.first.text
+tweets.each do |t|
+	puts t.text
+end
