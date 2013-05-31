@@ -2,8 +2,6 @@ require_relative 'data_fetching'
 
 
 
-fr = FREDFetcher.new
+fa = FREDAdapter.new
 
-
-results = fr.get_data 'NDUR'
-puts results
+puts fa.unemployment_rate "UT"

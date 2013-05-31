@@ -99,12 +99,19 @@ end
 # => 	by acting as a middle man to fetch proper data for states
 class FREDAdapter
 
+	FRED_STATE_UNEMPLOYMENT_RATE_SUFFIX = "UR"
+
 	def initialize
 		@fetcher = FREDFetcher.new
 	end
 
+
+	# => returns the most recent unemployment rate
 	def unemployment_rate state_abbrev
-		# => TODO: implement this method
+		historical_unemployment = @fetcher.get_data "#{state_abbrev}#{FRED_STATE_UNEMPLOYMENT_RATE_SUFFIX}"
+
+		historical_unemployment.last.value
+
 	end
 
 
