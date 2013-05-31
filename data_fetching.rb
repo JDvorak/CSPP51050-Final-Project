@@ -1,3 +1,9 @@
+# => author: Joseph Malandruccolo
+# => classes that comprise the 'Data Fetching' layer
+# => the primary responsibility of this class is to read raw data from
+# => 	the Federal Reserve Bank of St. Louis' FRED API and the Twitter
+# => 	API and provide the raw objects or data types to the data model
+
 require_relative 'secret'
 require 'twitter'
 require 'fred'
@@ -91,7 +97,6 @@ class FREDFetcher
 		raw_output.observations.observation
 	end
 
-
 end
 
 
@@ -113,6 +118,5 @@ class FREDAdapter
 		historical_unemployment.last.value
 
 	end
-
 
 end
