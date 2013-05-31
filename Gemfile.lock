@@ -3,8 +3,14 @@ GEM
   specs:
     faraday (0.8.7)
       multipart-post (~> 1.1)
+    fred (0.2.0)
+      httparty (>= 0.5.0)
+    httparty (0.11.0)
+      multi_json (~> 1.0)
+      multi_xml (>= 0.5.2)
     json (1.7.7)
     multi_json (1.7.4)
+    multi_xml (0.5.3)
     multipart-post (1.2.0)
     oj (2.0.14)
     simple_oauth (0.2.0)
@@ -17,6 +23,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  fred
   json (~> 1.7.7)
   oj
   twitter

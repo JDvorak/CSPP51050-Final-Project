@@ -1,5 +1,6 @@
 require_relative 'secret'
 require 'twitter'
+require 'fred'
 
 # => class that interfaces with the twitter API
 # => produces raw Tweet data
@@ -20,9 +21,7 @@ class TweetFetcher
 	# => fetch the previous 20 tweets from a given user
 	# => returns an array of Tweet objects
 	def user_tweets screen_name
-
 		Twitter.user_timeline(screen_name.to_s)
-		
 	end
 
 
@@ -45,7 +44,28 @@ end
 # => returns raw economic data
 class FREDFetcher
 
+	# => setup FRED
+	def initialize
+		@fred = Fred::Client.new( api_key: $fred_key )
+	end
 
+	# => return an array of possible categories
+	# => passing '0' as the node returns the top level categories
+	def list_children_for id
+		raw_output = @fred.category( 'children', category_id: id.to_s )
+
+		raw_output.categories.category
+	end
+
+
+	# => get the output of a category
+	# => returns Hashie object with attributes that can be called as if
+	# => 	they were object properties i.e. Hashie.name
+	def get_category id
+		raw_output = @fred.category( nil, category_id: id.to_s )
+
+		raw_output.categories.category
+	end
 
 
 end
