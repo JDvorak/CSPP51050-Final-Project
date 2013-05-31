@@ -68,4 +68,18 @@ class FREDFetcher
 	end
 
 
+	# => find economic data series that match a given term
+	# => type parameter may be either of the following:
+	# => 	- 'full_text': search all attributes of a data series
+	# => 	- 'series_id': search only the series_id
+	def search_series term, type
+		raw_output = @fred.series( 'search', 
+			search_text: term.to_s, 
+			search_type: type.to_s )
+
+		raw_output
+		
+	end
+
+
 end
