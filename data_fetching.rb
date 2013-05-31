@@ -51,7 +51,7 @@ class FREDFetcher
 
 	# => return an array of possible categories
 	# => passing '0' as the node returns the top level categories
-	def list_children_for id
+	def list_children id
 		raw_output = @fred.category( 'children', category_id: id.to_s )
 
 		raw_output.categories.category
@@ -77,8 +77,18 @@ class FREDFetcher
 			search_text: term.to_s, 
 			search_type: type.to_s )
 
-		raw_output
+		raw_output.seriess.series
 		
+	end
+
+
+	# => get data for a given series_id
+	# => returns an array of hashies, on which the value property represents the
+	# => underlying data
+	def get_data series_id
+		raw_output = @fred.series( 'observations', series_id: series_id.to_s)
+
+		raw_output.observations.observation
 	end
 
 
