@@ -1,8 +1,9 @@
 - Presentation
 	- Simple web GUI that allows users to run and view analyses in a human readable format
 	- responsibilities: make the app human readable by non-technical people
+	- design pattern => pub/sub  pattern => show data in a graph using a ruby graph lib and in a table
 
-- Control
+- Analysis Adapter / Control (part of the analysis layer?)
 	- Provide the presentation with a meaningful client on which it can call methods to analyze the data
 	- responsibilities: define the set of controls for the user
 	- interface with analysis layer

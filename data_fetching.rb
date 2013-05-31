@@ -93,3 +93,19 @@ class FREDFetcher
 
 
 end
+
+
+# => class that allows the Data Model layer to make simple calls to the FREDFetcher
+# => 	by acting as a middle man to fetch proper data for states
+class FREDAdapter
+
+	def initialize
+		@fetcher = FREDFetcher.new
+	end
+
+	def unemployment_rate state_abbrev
+		# => TODO: implement this method
+	end
+
+
+end
