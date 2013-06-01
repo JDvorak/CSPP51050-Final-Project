@@ -52,6 +52,23 @@ class SimpleDBManager
 
 	end
 
+	def tweets_for state
+
+		sdb = AWS::SimpleDB.new(access_key_id: $aws_access, secret_access_key: $aws_secret)
+
+		domain = sdb.domains['cspp51050-final']
+		results = domain.items.where(state: state)
+
+		objects = []
+		results.each do |r|
+			attributes = r.attributes
+			objects << TweetAdapter.new(attributes['text'].values.first, attributes['state'].values.first)
+		end
+
+		objects
+		
+	end
+
 end
 
 
@@ -110,7 +127,8 @@ class DataFetcherFacade
 
 	def load_tweets state
 
-		# => TODO: fetch tweets from SimpleDB from a state
+		@shared_database.tweets_for state
+		
 	end
 
 
@@ -258,6 +276,5 @@ class LocationArbiter
 		return self.lat_long city
 
 	end
-
 
 end
