@@ -28,6 +28,10 @@ end
 
 
 # => class that represents the database of tweets
+# => primary responsibility: serve as the shared interface with AWS SimpleDB
+# => 	write tweets to the database and read them as requested
+# => 	server as an adapter by abstracting useful queries into single methods
+# => 	and preventing arbitrary queries from hitting the database
 class SimpleDBManager
 
 	def self.shared_instance
@@ -36,7 +40,7 @@ class SimpleDBManager
 
 	private_class_method :new
 
-
+	# => write a TweetAdapter object to Amazon SimpleDB
 	def write_tweet tweet_adapter
 
 		sdb = AWS::SimpleDB.new(access_key_id: $aws_access, secret_access_key: $aws_secret)
@@ -51,6 +55,9 @@ class SimpleDBManager
 
 	end
 
+
+	# => get all tweets with a matching state attribute
+	# => 	TweetAdapter objects are returned
 	def tweets_for state
 
 		sdb = AWS::SimpleDB.new(access_key_id: $aws_access, secret_access_key: $aws_secret)
@@ -58,8 +65,29 @@ class SimpleDBManager
 		domain = sdb.domains['cspp51050-final']
 		results = domain.items.where(state: state)
 
+		convert_sdb_to_objects results
+		
+	end
+
+
+	# => get all tweets in the database, limiting the results to n tweets
+	def all_tweets_with_limit n
+		
+		sdb = AWS::SimpleDB.new(access_key_id: $aws_access, secret_access_key: $aws_secret)
+
+		domain = sdb.domains['cspp51050-final']
+		results = domain.items.limit(n)
+
+		convert_sdb_to_objects results
+
+	end
+
+
+	# => given raw sdb objects, generate useful Ruby Objects
+	def convert_sdb_to_objects sdb_output
+
 		objects = []
-		results.each do |r|
+		sdb_output.each do |r|
 			attributes = r.attributes
 			objects << TweetAdapter.new(attributes['text'].values.first, attributes['state'].values.first)
 		end
@@ -67,6 +95,7 @@ class SimpleDBManager
 		objects
 		
 	end
+
 
 end
 
@@ -132,35 +161,6 @@ class DataFetcherFacade
 
 
 end
-
-
-
-# => factory that controls object creation, from the perspective of the 
-# => 	'Data Analysis' layer
-class ModelFactory
-
-	def initialize
-		@data_facade = DataFetcherFacade.new
-	end
-
-	def fill_the_factory
-		# => TODO: this method adds an arbitrary number of tweets
-		# => 	from each state to the database
-	end
-
-
-	def is_full?
-		# => TODO: this method determines whether or not the database has tweets
-		# => 	from all 50 states
-	end
-
-
-	def read_database
-		# => TODO: this method brings all tweet data into memory for analysis
-	end
-
-end
-
 
 
 # => class that manages the location data used in this project

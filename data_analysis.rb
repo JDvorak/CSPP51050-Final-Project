@@ -4,8 +4,5 @@
 # => 	analyze the composition of tweets and their relation
 # => 	to macroeconomic variables
 # => this layer employes a strategy pattern to analyze tweets
-require_relative 'data_model/ModelFactory'
+require_relative 'factory'
 
-
-# => fill the factory unless factory is full
-# => load the factory or enough of the factory into memory 
