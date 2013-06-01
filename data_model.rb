@@ -8,7 +8,6 @@
 
 require_relative 'secret'
 require_relative 'data_fetching'
-
 require 'aws-sdk'
 
 # => class that represents a 'Tweet' from Twitter
@@ -135,6 +134,36 @@ class DataFetcherFacade
 end
 
 
+
+# => factory that controls object creation, from the perspective of the 
+# => 	'Data Analysis' layer
+class ModelFactory
+
+	def initialize
+		@data_facade = DataFetcherFacade.new
+	end
+
+	def fill_the_factory
+		# => TODO: this method adds an arbitrary number of tweets
+		# => 	from each state to the database
+	end
+
+
+	def is_full?
+		# => TODO: this method determines whether or not the database has tweets
+		# => 	from all 50 states
+	end
+
+
+	def read_database
+		# => TODO: this method brings all tweet data into memory for analysis
+	end
+
+end
+
+
+
+# => class that manages the location data used in this project
 class LocationArbiter
 	require_relative 'city_locations'
 
