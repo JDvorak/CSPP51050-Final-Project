@@ -1,6 +1,6 @@
 # Major US Cities with DMA Codes
 
-major_cities = [
+$major_cities = [
 {'city'=> 'Ada', 'dma_code'=> 657, 'latitude'=> 34.774531000000003, 'longitude'=> -96.678344899999999, 'region'=> 'OK', 'slug'=> 'ada-ok'},
 {'city'=> 'Akron', 'dma_code'=> 510, 'latitude'=> 41.081444699999999, 'longitude'=> -81.519005300000003, 'region'=> 'OH', 'slug'=> 'akron-oh'},
 {'city'=> 'Albany', 'dma_code'=> 525, 'latitude'=> 31.578507399999999, 'longitude'=> -84.155741000000006, 'region'=> 'GA', 'slug'=> 'albany-ga'},
