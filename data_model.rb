@@ -165,7 +165,7 @@ end
 
 # => class that manages the location data used in this project
 class LocationArbiter
-	require_relative 'city_locations'
+	require_relative 'resources/city_locations'
 
 	STATES = [
 		'AL',
