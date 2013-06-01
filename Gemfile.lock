@@ -1,6 +1,10 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aws-sdk (1.11.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     faraday (0.8.7)
       multipart-post (~> 1.1)
     fred (0.2.0)
@@ -12,17 +16,20 @@ GEM
     multi_json (1.7.4)
     multi_xml (0.5.3)
     multipart-post (1.2.0)
+    nokogiri (1.5.9)
     oj (2.0.14)
     simple_oauth (0.2.0)
     twitter (4.6.2)
       faraday (~> 0.8, < 0.10)
       multi_json (~> 1.0)
       simple_oauth (~> 0.2)
+    uuidtools (2.1.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk (~> 1.0)
   fred
   json (~> 1.7.7)
   oj
