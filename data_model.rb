@@ -7,6 +7,7 @@
 # => this layer also manages data persistence and storage
 
 require_relative 'secret'
+require_relative 'data_fetching'
 require 'aws-sdk'
 
 # => class that represents a 'Tweet' from Twitter
@@ -48,6 +49,29 @@ class SimpleDBManager
 
 		return
 
+	end
+
+end
+
+
+
+# => facade that encapsulates the functionality of the layer below in a simple
+# => 	interface used by the model
+class DataFetcherFacade
+
+	def initialize
+		@tweet_fetcher = TweetFetcher.new
+		@fred_fetcher = FREDAdapter.new
+		@shared_database = SimpleDBManager.shared_instance
+	end
+
+
+	def get_tweets_in states
+
+		# => get each state from tweets
+		states.each do |state|
+		end
+		
 	end
 
 
