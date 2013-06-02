@@ -24,16 +24,15 @@ end
 # => factory that produces tweets for the analysis layer
 class TweetFactory < AbstractFactory
 
-
-	def get_tweets
-		# => TODO: this method adds an arbitrary number of tweets
-		# => 	from each state to the database
+	def has_tweets? state
+		# => TODO: this method determines whether or not the database has tweets
+		# => 	from all 50 states
 	end
 
 
-	def has_tweets?
-		# => TODO: this method determines whether or not the database has tweets
-		# => 	from all 50 states
+	def build_tweets state
+		# => TODO: this method gets new tweets from the Twitter API, adds them
+		# => 	to the database and returns the tweets
 	end
 
 
