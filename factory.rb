@@ -3,26 +3,60 @@
 # => 	'Data Analysis' layer
 require_relative 'data_model'
 
-class TweetFactory
 
-	def initialize
-		@data_facade = DataFetcherFacade.new
+# => abstract factory class for factories that produce the objects required
+# => 	in the analysis layer
+class AbstractFactory
+
+	def new
+		raise "Cannot instantiate abstract class 'AbstractFactory'"
 	end
 
-	def fill_the_factory
+	# => common initializer
+	def initialize
+		@data_facade = DataFetcherFacade.new
+		@database_manager = SimpleDBManager.shared_instance
+	end
+
+end
+
+
+# => factory that produces tweets for the analysis layer
+class TweetFactory < AbstractFactory
+
+
+	def get_tweets
 		# => TODO: this method adds an arbitrary number of tweets
 		# => 	from each state to the database
 	end
 
 
-	def is_full?
+	def has_tweets?
 		# => TODO: this method determines whether or not the database has tweets
 		# => 	from all 50 states
 	end
 
 
-	def read_database
-		# => TODO: this method brings all tweet data into memory for analysis
+	def all_tweets
+		@database_manager.all_tweets_with_limit 2500
+	end
+
+
+	def tweets_for state
+		@database_manager.tweets_for state
+	end
+
+end
+
+
+# => factory that produces state objects
+class StateFactory < AbstractFactory
+
+	def object_for state
+		un_rate = @data_facade.unemployment_rate state.upcase
+
+		StateEconomy.new(state, un_rate)
+
 	end
 
 end

@@ -27,6 +27,21 @@ class TweetAdapter
 end
 
 
+
+# => class that represents a 'state economy' based on data from
+# => 	the Federal Reserve Bank of St. Louis
+class StateEconomy
+
+	attr_reader :state, :unemployment_rate
+
+	def initialize abbreviation, unemployment_rate
+		@unemployment_rate = unemployment_rate
+		@state = abbreviation
+	end
+
+end
+
+
 # => class that represents the database of tweets
 # => primary responsibility: serve as the shared interface with AWS SimpleDB
 # => 	write tweets to the database and read them as requested
@@ -157,6 +172,14 @@ class DataFetcherFacade
 
 		@shared_database.tweets_for state
 		
+	end
+
+	# => returns the value of the unemployment rate for the given state
+	def unemployment_rate state
+		value = @fred_fetcher.unemployment_rate state.upcase
+
+		value.to_f.round 2
+
 	end
 
 
