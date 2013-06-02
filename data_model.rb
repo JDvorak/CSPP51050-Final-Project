@@ -151,6 +151,8 @@ class DataFetcherFacade
 		tweet_adapters.each do |ta|
 			@shared_database.write_tweet ta
 		end
+
+		tweet_adapters
 		
 	end
 
