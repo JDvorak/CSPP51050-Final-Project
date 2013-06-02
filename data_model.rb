@@ -32,11 +32,17 @@ end
 # => 	the Federal Reserve Bank of St. Louis
 class StateEconomy
 
-	attr_reader :state, :unemployment_rate
+	attr_reader :state, :unemployment_rate, :results
+	attr_accessor :results
 
 	def initialize abbreviation, unemployment_rate
 		@unemployment_rate = unemployment_rate
 		@state = abbreviation
+		@results = Hash.new
+	end
+
+	def add_result key, value
+		@results[key] = value
 	end
 
 end

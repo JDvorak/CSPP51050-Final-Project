@@ -19,9 +19,11 @@ class AnalysisCoordinator
 
 
 	def analyze_tweets_with strategy
-		tweets = strategy.analyze
-		# => order the states on unemployment
-		# => 
+		# => 	create the state
+		# => 	create the tweets for the state
+		# => 	apply the strategy to the tweets, in a state
+		# => 	strategy attaches the result of the strategy to the state
+		# => fake this with dummy data, don't actually analyze tweets, just return 5
 	end
 
 end

@@ -14,17 +14,27 @@ class AbstractTweetStrategy
 		@results_key = results_key
 	end
 
-	def analyze tweets
+	# => method should return the average of some attribute for each tweet
+	# => call is added to the state as follows:
+	# => 	create the state
+	# => 	create the tweets for the state
+	# => 	apply the strategy to the tweets, in a state
+	# => 	strategy attaches the result of the strategy to the state
+	def analyze tweets, state
 		raise "Cannot call abstract method 'analyze_tone'"
 	end
 
 end
 
 
-class ExplitiveCounter < AbstractTweetStrategy
+class ExplitiveAverager < AbstractTweetStrategy
 
 
-	def analyze tweets
+	def analyze tweets, state
+
+		average_explitives = #do something that counts explitives
+
+		state.add_result @results_key, average_explitives
 		
 	end
 
