@@ -45,6 +45,7 @@ class StateEconomy
 		@results[key] = value
 	end
 
+
 end
 
 
@@ -202,14 +203,14 @@ class LocationArbiter
 		'AL',
 		'AK',
 		'AZ',
-		'AK',
+		'AR',
 		'CA',
 		'CO',
 		'CT',
 		'DE',
 		'FL',
 		'GA',
-		'HA',
+		'HI',
 		'ID',
 		'IL',
 		'IN',

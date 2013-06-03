@@ -5,7 +5,7 @@ require_relative 'data_analysis'
 
 class UserInterface
 
-	WHITELIST = [1,2]
+	WHITELIST = [1,2]	# => list of possible user inputs
 
 	def start
 
@@ -15,9 +15,12 @@ class UserInterface
 
 		while true
 			
+			# => prompt user for input
 			puts "Please select an analysis to run below:"
 			puts "1 - Average number of explitives per tweet by state"
 			puts "2 - Average tone (1 = positive - 10 = negative) of tweet by state"
+
+			# => read user input
 			user_input = gets.chomp
 			puts "You selected: #{user_input}"
 			break if WHITELIST.include? user_input.to_i
@@ -25,14 +28,15 @@ class UserInterface
 
 		end
 
+		# => run the analysis
 		puts "Please wait, magic is happening..."
 
 		analysis_layer = AnalysisFacade.new
-		# => line below not tested
-		#result = analysis_layer.analysis_for user_input.to_i
+		result = analysis_layer.analysis_for user_input.to_i
 
+		# => report the result
 		puts "Results:"
-		#puts result
+		puts result
 
 	end
 

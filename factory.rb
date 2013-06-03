@@ -67,11 +67,25 @@ end
 # => factory that produces state objects
 class StateFactory < AbstractFactory
 
+
 	# => produce a state object for the state indicated
 	def object_for state
 		un_rate = @data_facade.unemployment_rate state.upcase
 
 		StateEconomy.new(state, un_rate)
+
+	end
+
+	# => returns an array of each state object
+	def states
+		states = LocationArbiter::STATES
+
+		state_objects = []
+		states.each do |s|
+			state_objects.push(object_for s)
+		end
+
+		state_objects
 
 	end
 
