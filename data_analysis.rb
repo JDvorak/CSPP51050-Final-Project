@@ -31,17 +31,18 @@ class AnalysisCoordinator
 		# => PLEASE REVIEW AND TEST
 		states.each do |state|
 			tweets = @tweet_factory.force_tweets_for state.state
-			strategy(tweets, state)
+			strategy.analyze(tweets, state)
 
 		end
 
 		states 	# => the objects should now have a tag from the strategy
 
+		visualize(states)
 		# => here is where we present the results of the strategy
 =end
 
 		# => single state strategy
-		wyoming = @state_factory.object_for 'IL'
+		wyoming = @state_factory.object_for 'OK'
 		tweets = @tweet_factory.force_tweets_for wyoming.state
 
 
@@ -70,7 +71,7 @@ class AnalysisFacade
 		when 1
 			result = @coordinator.analyze_tweets_with ExplitiveAverager.new("explitive_count")
 		when 2
-			result = @coordinator.analyze_tweets_with ToneEvaluator.new("tone")
+			result = @coordinator.analyze_tweets_with ToneEvaluatorOne.new("tone")
 		else
 			raise "Invalid selection in AnalysisFacade"	
 		end
