@@ -41,7 +41,7 @@ class AnalysisCoordinator
 =end
 
 		# => single state strategy
-		wyoming = @state_factory.object_for 'WY'
+		wyoming = @state_factory.object_for 'IL'
 		tweets = @tweet_factory.force_tweets_for wyoming.state
 
 
