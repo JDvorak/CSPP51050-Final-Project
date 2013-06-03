@@ -6,6 +6,8 @@ require_relative 'data_model'
 
 class AbstractTweetStrategy
 
+	attr_reader :results_key
+
 	def new
 		raise "Cannot instantiate abstract class 'AbstractTweetStrategy'"
 	end
@@ -32,10 +34,15 @@ class ExplitiveAverager < AbstractTweetStrategy
 
 	def analyze tweets, state
 
+=begin
 		average_explitives = #do something that counts explitives
 
 		state.add_result @results_key, average_explitives
-		
+=end
+
+		state.results[@results_key] = 69
+		puts "counting explitives"
+
 	end
 
 

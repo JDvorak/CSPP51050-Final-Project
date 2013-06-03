@@ -19,7 +19,7 @@ class AnalysisCoordinator
 
 
 	def analyze_tweets_with strategy
-		
+=begin
 		# => 	create the states
 		# => 	create the tweets for the state
 		# => 	apply the strategy to the tweets, in a state
@@ -30,20 +30,24 @@ class AnalysisCoordinator
 		# => the code below is untested and mission critical
 		# => PLEASE REVIEW AND TEST
 		states.each do |state|
-			#tweets = @tweet_factory.force_tweets_for state
-			puts state.state
-			puts state.unemployment_rate
-			#strategy(tweets, state)
+			tweets = @tweet_factory.force_tweets_for state.state
+			strategy(tweets, state)
 
 		end
 
 		states 	# => the objects should now have a tag from the strategy
 
 		# => here is where we present the results of the strategy
-		
+=end
 
 		# => single state strategy
-		
+		wyoming = @state_factory.object_for 'WY'
+		tweets = @tweet_factory.force_tweets_for wyoming.state
+
+
+		strategy.analyze(tweets, wyoming)
+
+		wyoming.results[strategy.results_key]
 
 	end
 
