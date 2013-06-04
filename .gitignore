@@ -34,3 +34,6 @@ Icon
 
 # Secrets
 secret.rb
+
+# Subversion
+.svn/
