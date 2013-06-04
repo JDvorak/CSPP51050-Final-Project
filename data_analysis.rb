@@ -80,7 +80,9 @@ class AnalysisCoordinator
 		Gchart.bar(
 			title: "#{results_key} vs. Unemployment Rate by State",
 			data: y_axis_data,
-			axis_with_labels: 'x,r', axis_labels: [x_axis_labels, y_axis_labels],
+			axis_with_labels: ['x', 'y'], 
+			axis_labels: [[x_axis_labels]], 
+			axis_range:[nil, [y_axis_data.first, y_axis_data.last, (y_axis_data.last + y_axis_data.first / 10)]],
 			stacked: false,
 			size: '400x400',
 			format: 'file',
