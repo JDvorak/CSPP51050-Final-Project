@@ -50,6 +50,14 @@ class AnalysisCoordinator
 
 		wyoming.results[strategy.results_key]
 
+
+		states = []
+		states.push wyoming
+
+		#visualize states
+
+		states
+
 	end
 
 
@@ -69,14 +77,18 @@ class AnalysisFacade
 
 		case number
 		when 1
-			result = @coordinator.analyze_tweets_with ExplitiveAverager.new("explitive_count")
+			strategy = ExplitiveAverager.new("explitive_count")
+			result = @coordinator.analyze_tweets_with strategy
 		when 2
-			result = @coordinator.analyze_tweets_with ToneEvaluatorOne.new("tone")
+			strategy = ToneEvaluatorOne.new("tone")
+			result = @coordinator.analyze_tweets_with strategy
 		else
 			raise "Invalid selection in AnalysisFacade"	
 		end
 
-		puts result
+		result.each do |r|
+			puts "#{r.state} - #{r.unemployment_rate} | #{r.results[strategy.results_key]}"
+		end
 
 	end
 

@@ -9,6 +9,7 @@ GEM
       multipart-post (~> 1.1)
     fred (0.2.0)
       httparty (>= 0.5.0)
+    googlecharts (1.6.8)
     httparty (0.11.0)
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
@@ -31,6 +32,7 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk (~> 1.0)
   fred
+  googlecharts
   json (~> 1.7.7)
   oj
   twitter
