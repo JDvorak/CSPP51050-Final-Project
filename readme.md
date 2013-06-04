@@ -2,7 +2,7 @@ Twitter Data Analysis
 ===========
 
 Final project for CSPP 51050 - Object Oriented Architecture & Design  
-This project seeks to map Tweet data from the Twitter API with either economic data from the Federal Reserve Bank of St. Louis' FRED API.
+This project seeks to map Tweet data from the Twitter API with economic data from the Federal Reserve Bank of St. Louis' FRED API.
 
 
 Project Requirements
