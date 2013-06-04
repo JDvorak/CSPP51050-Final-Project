@@ -70,7 +70,7 @@ class AnalysisCoordinator
 	def visualize states, results_key
 
 
-		#order_states_by_unemployment states
+		states.sort! { |a,b| a.unemployment_rate <=> b.unemployment_rate }
 
 		x_axis_labels = []
 		y_axis_data = []
@@ -89,7 +89,7 @@ class AnalysisCoordinator
 			axis_labels: [x_axis_labels], 
 			axis_range:[nil, [y_axis_data.min, y_axis_data.max, (y_axis_data.min + y_axis_data.max / 10)]],
 			stacked: false,
-			size: '800x200',
+			size: '1000x290',
 			format: 'file',
 			filename: "results/result_#{Time.now.to_i}.png"
 		)
