@@ -6,6 +6,7 @@
 # => this layer employes a strategy pattern to analyze tweets
 require_relative 'factory'
 require_relative 'strategies'
+require 'gchart'
 
 
 # => class that coordinates the running of an analysis
@@ -54,10 +55,38 @@ class AnalysisCoordinator
 		states = []
 		states.push wyoming
 
-		#visualize states
+		visualize states, strategy.results_key
 
 		states
 
+	end
+
+
+	def visualize states, results_key
+
+
+		#order_states_by_unemployment states
+
+		x_axis_labels = []
+		y_axis_data = []
+		y_axis_labels = [results_key]
+
+		states.each do |state|
+			x_axis_labels << "#{state.state} | #{state.unemployment_rate}"
+			y_axis_data << state.results[results_key]
+		end	
+
+
+		Gchart.bar(
+			title: "#{results_key} vs. Unemployment Rate by State",
+			data: y_axis_data,
+			axis_with_labels: 'x,r', axis_labels: [x_axis_labels, y_axis_labels],
+			stacked: false,
+			size: '400x400',
+			format: 'file',
+			filename: "results/result_#{Time.now.to_i}.png"
+		)
+		
 	end
 
 
