@@ -20,28 +20,33 @@ class AnalysisCoordinator
 
 
 	def analyze_tweets_with strategy
-=begin
+
 		# => 	create the states
 		# => 	create the tweets for the state
 		# => 	apply the strategy to the tweets, in a state
 		# => 	strategy attaches the result of the strategy to the state
 		# => fake this with dummy data, don't actually analyze tweets, just return 5
 		states = @state_factory.states
-
-		# => the code below is untested and mission critical
-		# => PLEASE REVIEW AND TEST
+=begin
+		states = []
+		states.push @state_factory.object_for 'OR'
+		states.push @state_factory.object_for 'TN'
+		states.push @state_factory.object_for 'IL'
+=end
+		
 		states.each do |state|
 			tweets = @tweet_factory.force_tweets_for state.state
 			strategy.analyze(tweets, state)
-
 		end
 
 		states 	# => the objects should now have a tag from the strategy
 
-		visualize(states)
+		visualize states, strategy.results_key
 		# => here is where we present the results of the strategy
-=end
 
+		states
+
+=begin
 		# => single state strategy
 		wyoming = @state_factory.object_for 'OK'
 		tweets = @tweet_factory.force_tweets_for wyoming.state
@@ -58,7 +63,7 @@ class AnalysisCoordinator
 		visualize states, strategy.results_key
 
 		states
-
+=end
 	end
 
 
@@ -84,7 +89,7 @@ class AnalysisCoordinator
 			axis_labels: [[x_axis_labels]], 
 			axis_range:[nil, [y_axis_data.first, y_axis_data.last, (y_axis_data.last + y_axis_data.first / 10)]],
 			stacked: false,
-			size: '400x400',
+			size: '800x200',
 			format: 'file',
 			filename: "results/result_#{Time.now.to_i}.png"
 		)

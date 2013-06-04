@@ -283,7 +283,7 @@ class LocationArbiter
 			'DE' => 'Wilmington',
 			'FL' => 'Pensacola',
 			'GA' => 'Atlanta',
-			'HA' => 'Honolulu',
+			'HI' => 'Honolulu',
 			'ID' => 'Boise',
 			'IL' => 'Chicago',
 			'IN' => 'Indianapolis',
