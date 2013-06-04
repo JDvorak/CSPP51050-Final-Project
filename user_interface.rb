@@ -32,12 +32,7 @@ class UserInterface
 		puts "Please wait, magic is happening..."
 
 		analysis_layer = AnalysisFacade.new
-		result = analysis_layer.analysis_for user_input.to_i
-
-		# => report the result
-		puts "Results:"
-		puts result
+		analysis_layer.analysis_for user_input.to_i
 
 	end
-
 end
