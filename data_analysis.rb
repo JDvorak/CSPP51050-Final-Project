@@ -77,7 +77,7 @@ class AnalysisCoordinator
 		y_axis_labels = [results_key]
 
 		states.each do |state|
-			x_axis_labels << "#{state.state} | #{state.unemployment_rate}"
+			x_axis_labels << "#{state.state}"
 			y_axis_data << state.results[results_key]
 		end	
 
